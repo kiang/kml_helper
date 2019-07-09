@@ -14,11 +14,12 @@ function download(filename, text) {
 $(function() {
   $('#btnSubmit').click(function() {
     var numMeter = parseInt($('#textMeters').val());
+    var pointsCount = parseInt($('#textPointsCount').val());
     var lines = $('#textPoints').val().split(/\r?\n/);
     var xmlResult = '';
     for(k in lines) {
       var p = lines[k].split(',');
-      xmlResult += kml_ring_with_placeMark(parseFloat(p[1]), parseFloat(p[0]), numMeter, 40, 0, 'point', 'point detail');
+      xmlResult += kml_ring_with_placeMark(parseFloat(p[1]), parseFloat(p[0]), numMeter, pointsCount, 0, 'point', 'point detail');
     }
     download('result.kml', kml_header('病例範圍') + xmlResult + kml_footer());
     return false;
